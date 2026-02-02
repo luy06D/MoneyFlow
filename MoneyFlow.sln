@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFlow", "MoneyFlow\MoneyFlow.csproj", "{34222145-0B00-4300-AB61-FBAC32FD4771}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34222145-0B00-4300-AB61-FBAC32FD4771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34222145-0B00-4300-AB61-FBAC32FD4771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34222145-0B00-4300-AB61-FBAC32FD4771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34222145-0B00-4300-AB61-FBAC32FD4771}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1AD7454-7774-4168-8F96-4761588ED763}
+	EndGlobalSection
+EndGlobal
