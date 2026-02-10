@@ -42,6 +42,9 @@ namespace MoneyFlow.Context
             {
                 t.HasKey("TransactionId");
                 t.Property("TransactionId").ValueGeneratedOnAdd();
+                t.Property("Date").HasColumnType("date");
+                t.Property("TotalAmount").HasColumnType("decimal(10,2)");
+
 
                 t.HasOne(t => t.Service).WithMany().HasForeignKey(t => t.ServiceId)
                 .OnDelete(DeleteBehavior.Restrict);
