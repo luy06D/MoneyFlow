@@ -8,6 +8,8 @@ namespace MoneyFlow.Controllers
     {
         public IActionResult Index()
         {
+            //TODO : cambiar el USERID 
+
             var getAll = _serviceManager.GetAll(1);
             return View(getAll);
         }
