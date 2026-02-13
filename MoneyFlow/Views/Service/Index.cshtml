@@ -1,27 +1,48 @@
-﻿@model List<MoneyFlow.Entities.Service>
+﻿@model List<MoneyFlow.Models.ServiceVM>
 
 @{
 }
 
+<div class="row">
+    <div class="col-sm-6">
+        <h2>SERVICES</h2>
+    </div>
+    <div class="col-sm-6">
+        <a href="#" class="btn btn-outline-success">New services</a>
+    </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>User</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <th>@item.Name</th>
-                <th>@item.Type</th>
-                <th>@item.User</th>
+</div>
 
-            </tr>
-        }
+<hr />
 
-    </tbody>
-</table>
+<div class="row mt-5">
+    <div class="col-sm-12">
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.Name</th>
+                        <th>@item.Type</th>
+                        <th>
+                            <a href="#" class="btn btn-warning btn-sm">EDITAR</a>
+                            <a href="#" class="btn btn-danger btn-sm">ELIMINAR</a>
+                        </th>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

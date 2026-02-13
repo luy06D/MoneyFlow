@@ -13,5 +13,12 @@ namespace MoneyFlow.Controllers
             var getAll = _serviceManager.GetAll(1);
             return View(getAll);
         }
+
+
+        public IActionResult NewService()
+        {
+            return View();
+        }
+
     }
 }
