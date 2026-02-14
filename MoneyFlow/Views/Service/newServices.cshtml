@@ -1,3 +1,28 @@
-﻿
+﻿@model ServiceVM
 @{
 }
+
+
+<div class="row mt-4">
+    <div class="col-sm-6 offset-sm-3">
+        <h2>NEW SERVICE</h2>
+        <form action="/" method="post">
+            <div class="mb-3">
+                <label  class="form-label">SERVICE NAME</label>
+                <input type="text" class="form-control" asp-for="Name">
+            </div>
+
+            <select class="form-select" asp-for="Type">
+                <option selected>Seleccione</option>
+                <option value="income">income</option>
+                <option value="expense">expense</option>
+            </select>
+
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-primary" type="button">Button</button>
+                <button class="btn btn-primary" type="button">Button</button>
+            </div>
+        
+        </form>
+    </div>
+</div>
