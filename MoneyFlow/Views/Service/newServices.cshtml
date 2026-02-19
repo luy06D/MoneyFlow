@@ -6,21 +6,32 @@
 <div class="row mt-4">
     <div class="col-sm-6 offset-sm-3">
         <h2>NEW SERVICE</h2>
-        <form action="/" method="post">
-            <div class="mb-3">
+        <form asp-controller="Service" asp-action="newServices" method="post">
+            <div class="mt-4">
                 <label  class="form-label">SERVICE NAME</label>
                 <input type="text" class="form-control" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
-            <select class="form-select" asp-for="Type">
-                <option selected>Seleccione</option>
-                <option value="income">income</option>
-                <option value="expense">expense</option>
-            </select>
+            <div class="mt-5">
+                <select class="form-select" asp-for="Type">
+                    <option value="0" selected disabled>Seleccione</option>
+                    <option value="income">income</option>
+                    <option value="expense">expense</option>
+                </select>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
 
-            <div class="d-grid gap-2 d-md-block">
-                <button class="btn btn-primary" type="button">Button</button>
-                <button class="btn btn-primary" type="button">Button</button>
+            @if (ViewBag.message != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                   @ViewBag.message
+                </div>
+            }
+
+            <div class="d-grid gap-2 d-md-block mt-5">
+                <button class="btn btn-primary" type="submit">Add New</button>
+                <a asp-controller="Service" class="btn btn-warning" asp-action="Index" >Back</a>
             </div>
         
         </form>

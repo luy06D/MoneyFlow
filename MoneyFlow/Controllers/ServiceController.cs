@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MoneyFlow.Context;
 using MoneyFlow.Managers;
+using MoneyFlow.Models;
 
 namespace MoneyFlow.Controllers
 {
@@ -14,11 +15,25 @@ namespace MoneyFlow.Controllers
             return View(getAll);
         }
 
-
-        public IActionResult NewService()
+        [HttpGet]
+        public IActionResult NewServices()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult NewServices(ServiceVM model)
+        {
+
+            if (!ModelState.IsValid) return View(model);
+            // TODO: change UserId
+            model.UserId = 1;
+            var response = _serviceManager.NewService(model); 
+            if (response == 1) return RedirectToAction("Index");
+
+            ViewBag.message = "Error";
+            return View();
+        }
+
     }
-}
+}    
