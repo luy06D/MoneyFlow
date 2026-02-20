@@ -28,12 +28,33 @@ namespace MoneyFlow.Controllers
             if (!ModelState.IsValid) return View(model);
             // TODO: change UserId
             model.UserId = 1;
-            var response = _serviceManager.NewService(model); 
+            var response = _serviceManager.NewService(model);
             if (response == 1) return RedirectToAction("Index");
 
             ViewBag.message = "Error";
             return View();
         }
+
+        [HttpGet]
+        public IActionResult GetService(int id) 
+        {
+            var model = _serviceManager.GetById(id);    
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateService(ServiceVM model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var response = _serviceManager.UpdateService(model);
+            if(response == 1) return  RedirectToAction("Index");
+            ViewBag.message = "Error";
+
+            return View(model);
+
+        }
+
 
     }
 }    

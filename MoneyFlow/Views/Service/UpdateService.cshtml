@@ -2,13 +2,13 @@
 @{
 }
 
-
 <div class="row mt-4">
     <div class="col-sm-6 offset-sm-3">
-        <h2>NEW SERVICE</h2>
-        <form asp-controller="Service" asp-action="newServices" method="post">
+        <h2>UPDATE SERVICE</h2>
+        <form asp-controller="Service" asp-action="UpdateService" method="post">
+            <input type="hidden"  asp-for="ServiceId">
             <div class="mt-4">
-                <label  class="form-label">SERVICE NAME</label>
+                <label class="form-label">SERVICE NAME</label>
                 <input type="text" class="form-control" asp-for="Name">
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -25,15 +25,17 @@
             @if (ViewBag.message != null)
             {
                 <div class="alert alert-danger" role="alert">
-                   @ViewBag.message
+                    @ViewBag.message
                 </div>
             }
 
             <div class="d-grid gap-2 d-md-block mt-5">
-                <button class="btn btn-primary" type="submit">Add New</button>
-                <a asp-controller="Service" class="btn btn-warning" asp-action="Index" >Back</a>
+                <button class="btn btn-success" type="submit">Update Service</button>
+                <a asp-controller="Service" class="btn btn-warning" asp-action="Index">Back</a>
             </div>
-        
+
         </form>
     </div>
 </div>
+
+
