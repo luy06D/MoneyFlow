@@ -23,7 +23,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Type</th>
-                    <th>Operaciones</th>
+                    <th style="width: 200px">Operaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,17 +32,47 @@
                     <tr>
                         <th>@item.Name</th>
                         <th>@item.Type</th>
-                        <th>
-                            <a href="/Service/UpdateService/@item.ServiceId" class="btn btn-warning btn-sm">EDITAR</a>
-                            <a href="#" class="btn btn-danger btn-sm">ELIMINAR</a>
+                        <th style="width: 200px">
+                            <a href="/Service/updateService/@item.ServiceId" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                            <button href="#" class="btn btn-danger btn-sm" onclick="deleteItem(@item.ServiceId)"><i class="bi bi-trash3-fill"></i></button>
                         </th>
 
                     </tr>
                 }
 
             </tbody>
-        </table>
-
+         </table>
     </div>
-
 </div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        function deleteItem(serviceId){
+            // if(confirm("are you sure delete")){
+            //     window.location.href = '@Url.Action("DeleteService", "Service")'  + '?id=' + serviceId;
+
+            // }
+             Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '@Url.Action("DeleteService", "Service")'  + '?id=' + serviceId;
+          }
+        });
+        }    
+
+       
+
+    </script>
+
+}
+
+

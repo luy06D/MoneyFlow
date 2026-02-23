@@ -73,5 +73,35 @@ namespace MoneyFlow.Managers
 
             return affect_row;
         }
+
+        // Delete service 
+
+        public int DeleteService(int id)
+        {
+            var entity = _dbContext.Service.Find(id);
+
+            _dbContext.Service.Remove(entity);
+            var affectRow = _dbContext.SaveChanges();
+            return affectRow;
+        }
+
+        // Method for obtaining service by type
+
+
+        public List<ServiceVM> GetByType(int userId , string type)
+        {
+
+            var listType = _dbContext.Service
+                .Where(item => item.UserId == userId && item.Type == type)
+                .Select(item => new ServiceVM
+                {
+                    ServiceId = item.ServiceId,
+                    Name = item.Name,
+                })
+                .ToList();
+            return listType;
+
+        }
+
     }
 }

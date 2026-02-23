@@ -36,10 +36,10 @@ namespace MoneyFlow.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetService(int id) 
+        public IActionResult UpdateService(int id) 
         {
             var model = _serviceManager.GetById(id);    
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -53,6 +53,12 @@ namespace MoneyFlow.Controllers
 
             return View(model);
 
+        }
+
+        public IActionResult DeleteService(int id)
+        {
+            var response = _serviceManager.DeleteService(id);
+            return RedirectToAction("Index");
         }
 
 

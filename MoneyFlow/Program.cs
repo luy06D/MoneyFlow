@@ -15,7 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 // Configuración - uso total de la clase SM en el sistema 
-builder.Services.AddScoped<ServiceManager>(); 
+builder.Services.AddScoped<ServiceManager>();
+builder.Services.AddScoped<TransactionManager>();
 
 var app = builder.Build();
 
