@@ -1,16 +1,15 @@
-﻿
-@{
+﻿@{
 }
 
 
 <div class="row mt-4">
     <div class="col-sm-6 offset-sm-3">
         <h2>NEW TRANSACTION</h2>
-        <form  method="post">
-     
+        <form asp-controller ="Service" asp-action="" method="post">
+
             <div class="mt-4">
                 <label class="form-label">TYPE</label>
-                <select class="form-select" id="cboTypeService">
+                <select class="form-select" id="cboTypeService" onchange="ShowServices()">
                     <option value="0" selected disabled>Seleccione</option>
                     <option value="income">income</option>
                     <option value="expense">expense</option>
@@ -18,7 +17,7 @@
             </div>
             <div class="mt-3">
                 <label class="form-label  ">SERVICE</label>
-                <select class="form-select" id="cboService">
+                <select class="form-select" id="cboService" >
                     <option value="0" selected disabled>Seleccione</option>
                 </select>
             </div>
@@ -43,21 +42,54 @@
     </div>
 </div>
 
-@section Styles{
+@section Styles {
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+    <style>
+        .select2-container .select2-selection--single {
+            height: 38px;
+            padding-top: 4px
+        }
+    </style>
 }
 
-@section Scripts{
+@section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(function() {
-        $('#cboService').select2({
-            placeholder: "Seleccione",
-            with: '100%'
+            $(document).ready(function() {
+            $('#cboService').select2({
+                placeholder: "Seleccione",
+                with: '100%'
+            });
+
         });
-       
-    });
+
+
+        async function ShowServices(){
+            console.log("holla ")
+
+            const typeService = $("#cboTypeService").val();
+            const response = fetch(`/Transaction/ServicesByType?typeService=${typeService}`, {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json;charset=utf-8'}
+            })
+
+            if(response.ok){
+                const data = await response.json();
+                console.log(data)
+
+                const serviceSelect = $("#cboService");
+                serviceSelect.empty();
+                serviceSelect.append( new Option());
+
+                data.forEach((item) => {
+                    serviceSelect.append(new Option(item.name, item.serviceId))
+                })
+
+                serviceSelect.trigger("change.select2")
+
+            }
+
+          }
 
     </script>
 }

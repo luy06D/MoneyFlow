@@ -85,9 +85,8 @@ namespace MoneyFlow.Managers
             return affectRow;
         }
 
+
         // Method for obtaining service by type
-
-
         public List<ServiceVM> GetByType(int userId , string type)
         {
 
