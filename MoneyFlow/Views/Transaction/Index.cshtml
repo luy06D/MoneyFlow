@@ -5,7 +5,7 @@
 <div class="row mt-4">
     <div class="col-sm-6 offset-sm-3">
         <h2>NEW TRANSACTION</h2>
-        <form asp-controller ="Service" asp-action="" method="post">
+        <form asp-controller="Service" asp-action="" method="post">
 
             <div class="mt-4">
                 <label class="form-label">TYPE</label>
@@ -17,7 +17,7 @@
             </div>
             <div class="mt-3">
                 <label class="form-label  ">SERVICE</label>
-                <select class="form-select" id="cboService" >
+                <select class="form-select" id="cboService">
                     <option value="0" selected disabled>Seleccione</option>
                 </select>
             </div>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="d-grid gap-2 d-md-block mt-3">
-                <button class="btn btn-primary" type="button">Save</button>
+                <button class="btn btn-primary" type="button" onclick="SaveTransaction()">Save</button>
             </div>
 
         </form>
@@ -53,6 +53,7 @@
 }
 
 @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
             $(document).ready(function() {
@@ -65,17 +66,15 @@
 
 
         async function ShowServices(){
-            console.log("holla ")
 
             const typeService = $("#cboTypeService").val();
-            const response = fetch(`/Transaction/ServicesByType?typeService=${typeService}`, {
+            const response = await fetch(`/Transaction/ServicesByType?typeService=${typeService}`, {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json;charset=utf-8'}
             })
 
             if(response.ok){
                 const data = await response.json();
-                console.log(data)
 
                 const serviceSelect = $("#cboService");
                 serviceSelect.empty();
@@ -90,6 +89,45 @@
             }
 
           }
+
+        async function SaveTransaction(){
+
+              const modelDto = {
+                  data : $('#txtDate').val(),
+                  totalAmount : $('#txtAmount').val(),
+                  comment : $('#txtComment').val(),
+                  serviceId : $('#cboService').val()
+              }
+
+              const response = await fetch(`/Transaction/NewTransaction`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json;charset=utf-8'},
+                body: JSON.stringify(modelDto)
+
+              })
+
+
+            if (response.ok) {
+                const data = await response.json();
+
+                if (data != 0) {
+                    Swal.fire({
+                        title: "Registrado correctamente",
+                        icon: "success",
+                        draggable: true
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Error al guardar",
+                        icon: "error",
+                        draggable: true
+                    });
+                }
+            }
+          }
+
+
+
 
     </script>
 }
