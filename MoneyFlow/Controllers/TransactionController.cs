@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MoneyFlow.DTOs;
 using MoneyFlow.Managers;
 
 namespace MoneyFlow.Controllers
@@ -6,7 +7,7 @@ namespace MoneyFlow.Controllers
     public class TransactionController(
         TransactionManager _transactionManager,
         ServiceManager _serviceManager
-        
+       
         ) : Controller
     {
         public IActionResult Index()
@@ -22,6 +23,17 @@ namespace MoneyFlow.Controllers
             var result = _serviceManager.GetByType(userId, typeService);
             return Ok(result);  
         
+
+        }
+
+        [HttpPost]
+        public IActionResult NewTransaction([FromBody] TransactionDTO modelDto)
+        {
+            modelDto.UserId = 1;
+
+            var response = _transactionManager.NewTransaction(modelDto);
+
+            return Ok(response);
 
         }
     }

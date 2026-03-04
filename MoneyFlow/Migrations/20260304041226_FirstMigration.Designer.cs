@@ -12,7 +12,7 @@ using MoneyFlow.Context;
 namespace MoneyFlow.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260210041714_FirstMigration")]
+    [Migration("20260304041226_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace MoneyFlow.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.7")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

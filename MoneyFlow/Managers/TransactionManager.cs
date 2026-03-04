@@ -24,7 +24,7 @@ namespace MoneyFlow.Managers
             _dbContext.Transaction.Add(entity);
             var rowAfected = _dbContext.SaveChanges();
             return rowAfected;
-
+            
 
 
         }
