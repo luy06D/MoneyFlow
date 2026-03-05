@@ -25,7 +25,23 @@ namespace MoneyFlow.Managers
             var rowAfected = _dbContext.SaveChanges();
             return rowAfected;
             
+        }
 
+        public List<HistoryDTO> GetAllHistory(DateOnly startDate , DateOnly endDate, int userId)
+        {
+            var HistoryList = _dbContext.Transaction
+                .Where(item => item.UserId == userId &&
+                item.Date >= startDate && item.Date <= endDate)
+                .Select(item => new HistoryDTO
+                {
+                    Date = item.Date.ToString("dd/MM/yyyy"),
+                    Moth = item.Date.ToString("MMMM"),
+                    TypeService = item.Service.Name,
+                    TotalAmount = item.TotalAmount.ToString()
+                })
+                .ToList();
+
+            return HistoryList;
 
         }
     }

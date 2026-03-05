@@ -62,6 +62,10 @@
                 with: '100%'
             });
 
+
+            const today = new Date().toISOString().split('T')[0]
+            $('#txtDate').val(today)
+
         });
 
 
@@ -92,7 +96,6 @@
           }
 
           async function SaveTransaction(){
-              const data = 
 
               const modelDto = {
                   data : $('#txtDate').val(),
@@ -119,6 +122,7 @@
                         icon: "success",
                         draggable: true
                     });
+
                 } else {
                     Swal.fire({
                         title: "Error al guardar",
