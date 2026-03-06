@@ -1,0 +1,81 @@
+﻿
+@{
+}
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>TRANSACTION HISTORY</h2>
+    </div>
+</div>
+<hr />
+<div class="row g-3 align-items-center">
+    <div class="col-auto">
+        <label for="txtStartDate" class="col-form-label">Start Date</label>
+    </div>
+    <div class="col-auto">
+        <input type="date" id="txtStartDate" class="form-control" >
+    </div>
+    <div class="col-auto">
+        <label for="txtEndDate" class="col-form-label">End Date</label>
+    </div> 
+    <div class="col-auto">
+        <input type="date" id="txtEndDate" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <div class="mb-2">
+            <button type="button" class="btn btn-success">Filter</button>
+        </div>     
+    </div>
+</div>
+
+
+<div class="row mt-5">
+    <div class="col-sm-12">
+        <table id="myTable" class="display">
+            <thead>
+                <tr>
+                    <th>DATE</th>
+                    <th>MONTH</th>
+                    <th>TYPE SERVICE</th>
+                    <th>TOTAL AMOUNT</th>
+                    <th style="width: 200px">Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                    <td>Row 1 Data 2</td>
+                    <td>Row 1 Data 2</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                    <td>Row 1 Data 2</td>
+                    <td>Row 1 Data 2</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+           
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css" />
+
+}
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.3.7/js/dataTables.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+
+    </script>
+}
+

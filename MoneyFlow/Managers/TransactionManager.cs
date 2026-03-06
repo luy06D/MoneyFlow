@@ -35,7 +35,7 @@ namespace MoneyFlow.Managers
                 .Select(item => new HistoryDTO
                 {
                     Date = item.Date.ToString("dd/MM/yyyy"),
-                    Moth = item.Date.ToString("MMMM"),
+                    Month = item.Date.ToString("MMMM"),
                     TypeService = item.Service.Name,
                     TotalAmount = item.TotalAmount.ToString()
                 })
