@@ -36,7 +36,8 @@ namespace MoneyFlow.Managers
                 {
                     Date = item.Date.ToString("dd/MM/yyyy"),
                     Month = item.Date.ToString("MMMM"),
-                    TypeService = item.Service.Name,
+                    TypeService = item.Service.Type,
+                    Service = item.Service.Name,
                     TotalAmount = item.TotalAmount.ToString()
                 })
                 .ToList();

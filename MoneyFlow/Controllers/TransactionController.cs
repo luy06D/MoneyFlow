@@ -47,7 +47,7 @@ namespace MoneyFlow.Controllers
         {
             var userId = 1;
             var result  = _transactionManager.GetAllHistory(startDate, endDate, userId); 
-            return Ok(result);
+            return Ok(new { data = result});
         }
     }
 }

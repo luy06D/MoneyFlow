@@ -24,7 +24,7 @@
     </div>
     <div class="col-sm-3">
         <div class="mb-2">
-            <button type="button" class="btn btn-success">Filter</button>
+            <button type="button" class="btn btn-success" onclick="SearchTransaction()">Filter</button>
         </div>     
     </div>
 </div>
@@ -50,14 +50,6 @@
                     <td>Row 1 Data 2</td>
                     <td>Row 1 Data 2</td>
                 </tr>
-                <tr>
-                    <td>Row 1 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                </tr>
-           
             </tbody>
         </table>
     </div>
@@ -72,10 +64,35 @@
     <script src="https://cdn.datatables.net/2.3.7/js/dataTables.js"></script>
 
     <script>
+
+        let tableData;
+
         $(document).ready( function () {
-            $('#myTable').DataTable();
+
+        tableData = $('#myTable').DataTable({
+                ajax: {
+                    url: "/Transaction/GetHistory?startDate=1999/01/07&endDate=1999/03/30",
+                    type: "GET",
+                    dataType: "json"
+                },
+                columns: [
+                    {title: "Date" , data: "date", width: "150px"},
+                    {title: "Month" , data: "month", width: "150px"},
+                    {title: "Type Service" , data: "typeService", width: "150px"},
+                    {title: "Service" , data: "service", width: "150px"},
+                    {title: "Total Amount" , data: "totalAmount", width: "150px"}
+                ]
+            });
         } );
 
+
+        function SearchTransaction(){
+            const StartDate = $('#txtStartDate').val()
+            const EndDate = $('#txtEndDate').val()
+
+            const newUrl = `/Transaction/GetHistory?startDate=${StartDate}&endDate=${EndDate}`;
+            tableData.ajax.url(newUrl).load();
+        }
     </script>
 }
 
