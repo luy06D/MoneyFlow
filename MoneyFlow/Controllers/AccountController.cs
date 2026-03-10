@@ -6,7 +6,7 @@ namespace MoneyFlow.Controllers
 {
     public class AccountController(UserManager _userManager) : Controller
     {
-        public IActionResult View()
+        public IActionResult Login()
         {
             var viewModel = new LoginVM();
            
@@ -14,9 +14,21 @@ namespace MoneyFlow.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login()
+        public IActionResult Login(LoginVM viewModel)
         {
-            return View();  
+            if (!ModelState.IsValid) return View(viewModel);
+            var found = _userManager.Login(viewModel);
+            if (found.UserId == 0)
+            {
+                ViewBag.Message = "No matches found.";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
+
+
 }
