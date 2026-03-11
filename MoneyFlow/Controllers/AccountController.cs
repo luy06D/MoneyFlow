@@ -28,6 +28,11 @@ namespace MoneyFlow.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        // FALTA LOGICA PARA REGISTRO NEWUSER -------
+      
+         
+
     }
 
 
