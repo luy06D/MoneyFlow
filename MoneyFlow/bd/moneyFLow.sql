@@ -2,6 +2,7 @@ USE dbMoney
 
 SELECT * FROM Service;
 SELECT * FROM [Transaction]
+SELECT * FROM [User];
 
 update [Transaction]
 set [Date] = '2026-03-01' 

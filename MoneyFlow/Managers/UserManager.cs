@@ -13,7 +13,7 @@ namespace MoneyFlow.Managers
         {
             var getData = _dbContext.User
                 .Where(item => item.Email == viewModel.Email &&
-                item.Password == item.Password).FirstOrDefault();
+                item.Password == Sha256Hasher.ComputeHash(viewModel.Password)).FirstOrDefault();
 
             var user = new UserVM();
 
@@ -28,7 +28,7 @@ namespace MoneyFlow.Managers
             return user;
         }
 
-        public int newUser(UserVM viewModel)
+        public int NewUser(UserVM viewModel)
         {
             if (viewModel.Password != viewModel.RepeatPassword)
                 throw new InvalidOperationException("The password are not the same");
