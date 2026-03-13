@@ -61,7 +61,7 @@ namespace MoneyFlow.Controllers
                 ViewBag.message = ex.Message;
                 ViewBag.Class = "alert-danger";
             }
-            return View(); 
+            return View();  
         }
          
 

@@ -19,7 +19,7 @@
                 <div class="card show">
                     <div class="card-body p-4">
                         <h2 class="card-title text-center mb-4">User Register</h2>
-                        <form asp-controller="Account" asp-action="NewUser" method="post">
+                        <form asp-controller="Account" asp-action="Register" method="post">
                             <div class="mt-4">
                                 <label class="form-label">Full Name </label>
                                 <input type="text" class="form-control" asp-for="FullName">
@@ -52,7 +52,7 @@
                                 <button class="btn btn-primary" type="submit">Register</button>
                             </div>
                             <div class="d-grid mt-2">
-                                <button class="btn btn-outline-secondary" type="submit">Log in</button>
+                                <a class="btn btn-outline-secondary" asp-controller="Account" asp-action="Login" >Log in</a>
                             </div>
                         </form>
                     </div>
