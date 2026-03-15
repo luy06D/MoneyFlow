@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MoneyFlow.DTOs;
 using MoneyFlow.Managers;
+using System.Security.Claims;
 
 namespace MoneyFlow.Controllers
 {
+    [Authorize]
     public class TransactionController(
         TransactionManager _transactionManager,
         ServiceManager _serviceManager
@@ -18,8 +21,8 @@ namespace MoneyFlow.Controllers
         [HttpGet]
         public IActionResult ServicesByType(string typeService)
         {
-            //TODO : change userd
-            var userId = 1;
+            var UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            var userId = int.Parse(UserId);
             var result = _serviceManager.GetByType(userId, typeService);
             return Ok(result);  
         
@@ -29,7 +32,8 @@ namespace MoneyFlow.Controllers
         [HttpPost]
         public IActionResult NewTransaction([FromBody] TransactionDTO modelDto)
         {
-            modelDto.UserId = 1;
+            var UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            modelDto.UserId = int.Parse(UserId);
 
             var response = _transactionManager.NewTransaction(modelDto);
 
@@ -45,8 +49,8 @@ namespace MoneyFlow.Controllers
         [HttpGet]
         public IActionResult GetHistory(DateOnly startDate, DateOnly endDate  )
         {
-            var userId = 1;
-            var result  = _transactionManager.GetAllHistory(startDate, endDate, userId); 
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            var result  = _transactionManager.GetAllHistory(startDate, endDate, int.Parse(userId)); 
             return Ok(new { data = result});
         }
     }

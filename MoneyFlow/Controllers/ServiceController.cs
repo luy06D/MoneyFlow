@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MoneyFlow.Context;
 using MoneyFlow.Managers;
 using MoneyFlow.Models;
+using System.Security.Claims;
 
 namespace MoneyFlow.Controllers
 {
+    [Authorize]
     public class ServiceController(ServiceManager _serviceManager) : Controller
     {
         public IActionResult Index()
         {
-            //TODO : cambiar el USERID 
-
-            var getAll = _serviceManager.GetAll(1);
+            var UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            var getAll = _serviceManager.GetAll(int.Parse(UserId));
             return View(getAll);
         }
 
@@ -26,8 +28,9 @@ namespace MoneyFlow.Controllers
         {
 
             if (!ModelState.IsValid) return View(model);
-            // TODO: change UserId
-            model.UserId = 1;
+
+            var UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            model.UserId = int.Parse(UserId);
             var response = _serviceManager.NewService(model);
             if (response == 1) return RedirectToAction("Index");
 
